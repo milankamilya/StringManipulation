@@ -13,6 +13,10 @@
 		DD99217F2090A23D002EC93D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD99217E2090A23D002EC93D /* Assets.xcassets */; };
 		DD9921822090A23D002EC93D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD9921802090A23D002EC93D /* LaunchScreen.storyboard */; };
 		DD99218D2090A23D002EC93D /* StringManipulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD99218C2090A23D002EC93D /* StringManipulationTests.swift */; };
+		DD9921982090A299002EC93D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9921972090A299002EC93D /* String+.swift */; };
+		DD9921992090A3D2002EC93D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9921972090A299002EC93D /* String+.swift */; };
+		DD99219B2090B9A6002EC93D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DD99219A2090B9A6002EC93D /* README.md */; };
+		DD99219D2090BC46002EC93D /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = DD99219C2090BC46002EC93D /* LICENSE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,9 @@
 		DD9921882090A23D002EC93D /* StringManipulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StringManipulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD99218C2090A23D002EC93D /* StringManipulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringManipulationTests.swift; sourceTree = "<group>"; };
 		DD99218E2090A23D002EC93D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD9921972090A299002EC93D /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		DD99219A2090B9A6002EC93D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DD99219C2090BC46002EC93D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +66,8 @@
 		DD99216B2090A23C002EC93D = {
 			isa = PBXGroup;
 			children = (
+				DD99219C2090BC46002EC93D /* LICENSE.md */,
+				DD99219A2090B9A6002EC93D /* README.md */,
 				DD9921762090A23D002EC93D /* StringManipulation */,
 				DD99218B2090A23D002EC93D /* StringManipulationTests */,
 				DD9921752090A23D002EC93D /* Products */,
@@ -83,6 +92,7 @@
 				DD99217E2090A23D002EC93D /* Assets.xcassets */,
 				DD9921802090A23D002EC93D /* LaunchScreen.storyboard */,
 				DD9921832090A23D002EC93D /* Info.plist */,
+				DD9921972090A299002EC93D /* String+.swift */,
 			);
 			path = StringManipulation;
 			sourceTree = "<group>";
@@ -199,7 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD99219D2090BC46002EC93D /* LICENSE.md in Sources */,
 				DD99217A2090A23D002EC93D /* ViewController.swift in Sources */,
+				DD9921982090A299002EC93D /* String+.swift in Sources */,
+				DD99219B2090B9A6002EC93D /* README.md in Sources */,
 				DD9921782090A23D002EC93D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD9921992090A3D2002EC93D /* String+.swift in Sources */,
 				DD99218D2090A23D002EC93D /* StringManipulationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
