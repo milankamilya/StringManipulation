@@ -26,12 +26,14 @@ import Foundation
 
 extension String {
   
-  // 1. Find a specific character i.e.  "@"
-  //    - move backward till you find a whitespace or startIndex
-  //    - take just before character, check whether it match with Key
-  // 2. Take range of keyIndex to selectedIndex
-  // 3. Send to table for search
   
+  /// To mention a person and tag anybody, we need to search through the text. For that we need
+  /// the key (i.e. @ for mention, # hashtag) and present Index of caret.
+  ///
+  /// - Parameters:
+  ///   - key: Character, (i.e. @, #, ! etc)
+  ///   - from: present String.Index of caret
+  /// - Returns: (searchString: String, searchRange: Range<String.Index>) searchString will be useful to display autocomplete table. the searchRange will be needed at the time of replacing with actual/ complete text/string from autocomplete table. So, please send searchRange back while replacing the text that will improve performance of the app.
   func search(key: Character, from: String.Index) -> (searchString: String, searchRange: Range<String.Index>)? {
     
     let startIndex = self.startIndex
@@ -41,11 +43,11 @@ extension String {
     var iteratorIndex = from
     while (true) {
       
-      let newIndex = self.index(before: iteratorIndex)
+      let newIndex = index(before: iteratorIndex)
       let character = self[newIndex]
-      print(character)
+      
       if String(character).rangeOfCharacter(from:whitespaces) != nil {
-        keyIndex = self.index(after: newIndex)
+        keyIndex = index(after: newIndex)
         break
       } else if newIndex == startIndex {
         keyIndex = newIndex
@@ -54,17 +56,16 @@ extension String {
         iteratorIndex = newIndex
       }
     }
-    print("-----")
     
     if let keyIndex = keyIndex {
-      let kIndex = self.index(after: keyIndex)
+      let kIndex = index(after: keyIndex)
       
       if self[keyIndex] == key {
         
-        let range = keyIndex..<from
+        // let range = keyIndex..<from
         let searchRange = kIndex..<from
         let searchString = self[searchRange]
-        return (searchString, range)
+        return (searchString, searchRange)
         
       } else {
         return nil
@@ -77,9 +78,24 @@ extension String {
   }
   
   
-  // Replace the key string to selectedIndex with the selected string from auto complete table
-  //
-  //func replace(key: Character, from: String.Index, ofself: String, with: String) -> (String, String.Index) {
-  //  
-  //}
+  /// To replace the specific range of the String with a string from autocomplete text.
+  ///
+  /// - Parameters:
+  ///   - searchRange: Range<String.Index> It is already given to you while you called search(key:from:) method
+  ///   - with: String which will be replaced with
+  /// - Returns: SelectedIndex will be return, please use it set selectedIndex which will move the caret to exact position.
+  func replace(searchRange: Range<String.Index>, with: String) -> (text:String, selectedIndex:String.Index)? {
+    //TODO:- change return documentation
+    //TODO:- Check searchRange & with are valid, else return nil
+    var text = self
+    text.replaceSubrange(searchRange, with: with)
+    var selectedIndex = text.endIndex
+    if let sIndex = text.index( searchRange.lowerBound,
+                                offsetBy: with.characters.count,
+                                limitedBy: text.characters.endIndex) {
+      selectedIndex = sIndex
+    }
+    
+    return (text: text, selectedIndex: selectedIndex)
+  }
 }

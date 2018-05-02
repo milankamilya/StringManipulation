@@ -38,15 +38,20 @@ class StringManipulationTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-      
-      
       
       // TEST CASE 1
       let t1 = "@"
       if let r1 = t1.search(key: "@", from: t1.endIndex) {
         XCTAssert(r1.searchString == "")
+        
+        // Replacing
+        let name = "Milan Kamilya"
+        if let r11 = t1.replace(searchRange: r1.searchRange, with: name) {
+          XCTAssert(r11.text == "@Milan Kamilya")
+          let sIndex = r11.text.endIndex
+          XCTAssert(r11.selectedIndex == sIndex)
+        }
+        
       } else { XCTAssert(false) }
       
       
@@ -54,6 +59,15 @@ class StringManipulationTests: XCTestCase {
       let t2 = "@Mil"
       if let r2 = t2.search(key: "@", from: t2.endIndex) {
         XCTAssert(r2.searchString == "Mil")
+        
+        // Replacing
+        let name = "Milan Kamilya"
+        if let r = t2.replace(searchRange: r2.searchRange, with: name) {
+          XCTAssert(r.text == "@Milan Kamilya")
+          let sIndex = r.text.endIndex
+          XCTAssert(r.selectedIndex == sIndex)
+        }
+        
       } else { XCTAssert(false) }
       
       
@@ -61,6 +75,15 @@ class StringManipulationTests: XCTestCase {
       let t3 = "Hello @Mil"
       if let r3 = t3.search(key: "@", from: t3.endIndex) {
         XCTAssert(r3.searchString == "Mil")
+        
+        // Replacing
+        let name = "Milan Kamilya"
+        if let r = t3.replace(searchRange: r3.searchRange, with: name) {
+          XCTAssert(r.text == "Hello @Milan Kamilya")
+          let sIndex = r.text.endIndex
+          XCTAssert(r.selectedIndex == sIndex)
+        }
+        
       } else { XCTAssert(false) }
       
       
@@ -68,6 +91,14 @@ class StringManipulationTests: XCTestCase {
       let t4 = "Hello \n@Mil"
       if let r4 = t4.search(key: "@", from: t4.endIndex) {
         XCTAssert(r4.searchString == "Mil")
+        
+        // Replacing
+        let name = "Milan Kamilya"
+        if let r = t4.replace(searchRange: r4.searchRange, with: name) {
+          XCTAssert(r.text == "Hello \n@Milan Kamilya")
+          let sIndex = r.text.endIndex
+          XCTAssert(r.selectedIndex == sIndex)
+        }
       } else { XCTAssert(false) }
       
       
@@ -84,13 +115,30 @@ class StringManipulationTests: XCTestCase {
       let t6 = "Hello there @"
       if let r6 = t6.search(key: "@", from: t6.endIndex) {
         XCTAssert(r6.searchString == "")
+        
+        // Replacing
+        let name = "Milan Kamilya"
+        if let r = t6.replace(searchRange: r6.searchRange, with: name) {
+          XCTAssert(r.text == "Hello there @Milan Kamilya")
+          let sIndex = r.text.endIndex
+          XCTAssert(r.selectedIndex == sIndex)
+        }
       } else { XCTAssert(false) }
       
       
       // TEST CASE 7
       let t7 = "Hello @there "
-      if let r7 = t7.search(key: "@", from: t7.index(t7.startIndex, offsetBy: 8)) {
+      let selectedIndex = t7.index(t7.startIndex, offsetBy: 8)
+      if let r7 = t7.search(key: "@", from: selectedIndex) {
         XCTAssert(r7.searchString == "t")
+        
+        // Replacing
+        let name = "Milan Kamilya"
+        if let r = t7.replace(searchRange: r7.searchRange, with: name) {
+          XCTAssert(r.text == "Hello @Milan Kamilyahere ")
+          let sIndex = r.text.index(r.text.index(after: selectedIndex), offsetBy: name.characters.count)
+          XCTAssert(r.selectedIndex == sIndex)
+        }
       } else { XCTAssert(false) }
       
       // TEST CASE 8
