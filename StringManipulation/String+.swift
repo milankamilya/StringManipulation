@@ -87,11 +87,17 @@ extension String {
   func replace(searchRange: Range<String.Index>, with: String) -> (text:String, selectedIndex:String.Index)? {
     //TODO:- change return documentation
     //TODO:- Check searchRange & with are valid, else return nil
+    
+    
     var text = self
     text.replaceSubrange(searchRange, with: with)
     var selectedIndex = text.endIndex
+    
+    // If the range is empty, then additional 1 need to be added for index correction
+    let indexCorrection = searchRange.isEmpty ? 1 : 0
+    
     if let sIndex = text.index( searchRange.lowerBound,
-                                offsetBy: with.characters.count,
+                                offsetBy: with.characters.count + indexCorrection,
                                 limitedBy: text.characters.endIndex) {
       selectedIndex = sIndex
     }

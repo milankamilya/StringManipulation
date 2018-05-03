@@ -136,7 +136,7 @@ class StringManipulationTests: XCTestCase {
         let name = "Milan Kamilya"
         if let r = t7.replace(searchRange: r7.searchRange, with: name) {
           XCTAssert(r.text == "Hello @Milan Kamilyahere ")
-          let sIndex = r.text.index(r.text.index(after: selectedIndex), offsetBy: name.characters.count)
+          let sIndex = r.text.index(r.text.index(before: selectedIndex), offsetBy: name.characters.count)
           XCTAssert(r.selectedIndex == sIndex)
         }
       } else { XCTAssert(false) }
@@ -147,6 +147,7 @@ class StringManipulationTests: XCTestCase {
         XCTAssert(r8.searchString == "ale")
       } else { XCTAssert(false) }
       
+      // TEST CASE 9
       if let r9 = t8.search(key: "@", from: t8.index(t8.endIndex, offsetBy: -6)) {
         XCTAssert(r9.searchString == "wit")
       } else { XCTAssert(false) }
