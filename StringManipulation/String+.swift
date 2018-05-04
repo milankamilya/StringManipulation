@@ -83,25 +83,40 @@ extension String {
   /// - Parameters:
   ///   - searchRange: Range<String.Index> It is already given to you while you called search(key:from:) method
   ///   - with: String which will be replaced with
-  /// - Returns: SelectedIndex will be return, please use it set selectedIndex which will move the caret to exact position.
+  /// - Returns: (text: String, selectedIndex: String.Index) a tuple of text and selectedIndex for the caret position will be returned.
   func replace(searchRange: Range<String.Index>, with: String) -> (text:String, selectedIndex:String.Index)? {
-    //TODO:- change return documentation
-    //TODO:- Check searchRange & with are valid, else return nil
+    //TODO:- Check searchRange contains within the String & with are valid, else return nil
     
-    
+//    if text == "" ||  {
+//      <#code#>
+//    }
+
     var text = self
-    text.replaceSubrange(searchRange, with: with)
+    var replace = with.appendSpace()
+    text.replaceSubrange(searchRange, with: replace)
     var selectedIndex = text.endIndex
     
     // If the range is empty, then additional 1 need to be added for index correction
     let indexCorrection = searchRange.isEmpty ? 1 : 0
     
     if let sIndex = text.index( searchRange.lowerBound,
-                                offsetBy: with.characters.count + indexCorrection,
+                                offsetBy: replace.characters.count + indexCorrection,
                                 limitedBy: text.characters.endIndex) {
       selectedIndex = sIndex
     }
     
     return (text: text, selectedIndex: selectedIndex)
+  }
+  
+  private func appendSpace() -> String {
+    var str = self
+    let whitespaces = CharacterSet.whitespacesAndNewlines
+
+    if let last = str.characters.last,
+      String(last).rangeOfCharacter(from:whitespaces) != nil {
+      return str
+    } else {
+      return str + " "
+    }
   }
 }
