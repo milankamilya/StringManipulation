@@ -128,7 +128,7 @@ class StringManipulationTests: XCTestCase {
       
       // TEST CASE 7
       let t7 = "Hello @there "
-      let selectedIndex = t7.index(t7.startIndex, offsetBy: 8)
+      var selectedIndex = t7.index(t7.startIndex, offsetBy: 8)
       if let r7 = t7.search(key: "@", from: selectedIndex) {
         XCTAssert(r7.searchString == "t")
         
@@ -142,14 +142,31 @@ class StringManipulationTests: XCTestCase {
       } else { XCTAssert(false) }
       
       // TEST CASE 8
-      let t8 = "hello @alejandro 😆👊🏻✊🏿🍣🇩🇪 I am in love @with you "
-      if let r8 = t8.search(key: "@", from: t8.index(t8.startIndex, offsetBy: 10)) {
+      let t8 = "hello @alejandro 😆👊🏻✊🏿🍣🇩🇪 I am in love @wats you "
+      selectedIndex = t8.index(t8.startIndex, offsetBy: 10)
+      if let r8 = t8.search(key: "@", from: selectedIndex) {
         XCTAssert(r8.searchString == "ale")
+        
+        let name = "Alejandro"
+        if let r = t8.replace(searchRange: r8.searchRange, with: name) {
+          XCTAssert(r.text == "hello @Alejandro jandro 😆👊🏻✊🏿🍣🇩🇪 I am in love @wats you ")
+          let sIndex = r.text.index(selectedIndex, offsetBy: name.characters.count + 1 - 3)
+          XCTAssert(r.selectedIndex == sIndex)
+        }
       } else { XCTAssert(false) }
       
       // TEST CASE 9
-      if let r9 = t8.search(key: "@", from: t8.index(t8.endIndex, offsetBy: -6)) {
-        XCTAssert(r9.searchString == "wit")
+      selectedIndex = t8.index(t8.endIndex, offsetBy: -6)
+      if let r9 = t8.search(key: "@", from: selectedIndex) {
+        XCTAssert(r9.searchString == "wat")
+        
+        let name = "Watson"
+        if let r = t8.replace(searchRange: r9.searchRange, with: name) {
+          XCTAssert(r.text == "hello @alejandro 😆👊🏻✊🏿🍣🇩🇪 I am in love @Watson s you ")
+          let sIndex = r.text.index(selectedIndex, offsetBy: name.characters.count + 1 - 3)
+          XCTAssert(r.selectedIndex == sIndex)
+        }
+
       } else { XCTAssert(false) }
       
       

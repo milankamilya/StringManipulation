@@ -21,4 +21,4 @@ For more details of the method, please check method documentation.
 - ✅ Implement String Replace with autocomplete text
 - ✅ Return the origin string and range where the carte will be displayed.
 - ⬜️ Check searchRange in replace(_:with:) method whether it contains the range, before replacing with the provided string.
-- ⬜️ Complete Test Cases 8 & 9
+- ✅ Complete Test Cases 8 & 9
